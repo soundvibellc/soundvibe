@@ -3,21 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soundvibe</title>
+  <title>Soundvibe — Social Media Distribution for Creators</title>
+  <meta name="description" content="Soundvibe helps music creators and producers upload, schedule, and publish content to TikTok, YouTube Shorts, and Instagram Reels from one desktop app.">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.6; }
-    h1 { color: #4263eb; }
-    a { color: #4263eb; }
-    .links { margin-top: 30px; }
-    .links a { display: block; margin: 10px 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a2e; line-height: 1.6; }
+
+    .hero {
+      background: linear-gradient(135deg, #4263eb 0%, #7c3aed 100%);
+      color: white; text-align: center; padding: 80px 20px 60px;
+    }
+    .hero h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 32px; opacity: 0.92; }
+    .badge {
+      display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 20px; border-radius: 30px; font-size: 0.9rem; font-weight: 600;
+    }
+
+    .features { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+    .features h2 { text-align: center; font-size: 1.8rem; margin-bottom: 40px; color: #4263eb; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .feature-card {
+      background: #f8f9ff; border-radius: 12px; padding: 28px;
+      border: 1px solid #e8ecf4; text-align: center;
+    }
+    .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: #1a1a2e; }
+    .feature-card p { font-size: 0.9rem; color: #555; }
+
+    .platforms { background: #f4f5fb; padding: 50px 20px; text-align: center; }
+    .platforms h2 { font-size: 1.8rem; margin-bottom: 12px; color: #4263eb; }
+    .platforms p { color: #555; margin-bottom: 30px; font-size: 1.05rem; }
+    .platform-list { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .platform-item {
+      background: white; border-radius: 12px; padding: 20px 32px;
+      border: 1px solid #e0e4ef; font-weight: 600; font-size: 1rem; color: #333;
+    }
+
+    .how-it-works { max-width: 700px; margin: 0 auto; padding: 60px 20px; }
+    .how-it-works h2 { text-align: center; font-size: 1.8rem; margin-bottom: 40px; color: #4263eb; }
+    .step { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+    .step-num {
+      background: #4263eb; color: white; width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0;
+    }
+    .step-text h3 { font-size: 1rem; margin-bottom: 4px; }
+    .step-text p { font-size: 0.9rem; color: #555; }
+
+    .cta {
+      background: linear-gradient(135deg, #4263eb 0%, #7c3aed 100%);
+      color: white; text-align: center; padding: 50px 20px;
+    }
+    .cta h2 { font-size: 1.6rem; margin-bottom: 12px; }
+    .cta p { opacity: 0.9; margin-bottom: 24px; }
+    .cta-btn {
+      display: inline-block; background: white; color: #4263eb; padding: 12px 32px;
+      border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none;
+    }
+
+    footer {
+      background: #1a1a2e; color: #aaa; padding: 30px 20px; text-align: center; font-size: 0.85rem;
+    }
+    footer a { color: #8b9cf7; text-decoration: none; margin: 0 12px; }
+    footer a:hover { text-decoration: underline; }
+    footer .copyright { margin-top: 12px; }
+
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .platform-list { gap: 16px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Soundvibe</h1>
-  <p>Manage all your social media content in one place. Upload, schedule, and publish to TikTok, YouTube Shorts, Instagram Reels, and more.</p>
-  <div class="links">
-    <a href="terms.html">Terms of Service</a>
-    <a href="privacy.html">Privacy Policy</a>
-  </div>
+
+  <section class="hero">
+    <h1>Soundvibe</h1>
+    <p>The all-in-one desktop app for music creators to manage, schedule, and distribute content across TikTok, YouTube Shorts, and Instagram Reels.</p>
+    <span class="badge">Available for macOS</span>
+  </section>
+
+  <section class="features">
+    <h2>Built for Creators</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#127925;</div>
+        <h3>Upload Once, Post Everywhere</h3>
+        <p>Import your video or image, then distribute to multiple platforms with a single click.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#129302;</div>
+        <h3>AI-Powered Captions</h3>
+        <p>Generate engaging captions and hashtags using AI that analyzes your actual content.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128197;</div>
+        <h3>Smart Scheduling</h3>
+        <p>Schedule posts for peak engagement times. Never miss the best time to post again.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128274;</div>
+        <h3>Privacy Controls</h3>
+        <p>Choose between public, unlisted, or private for every post across all platforms.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128200;</div>
+        <h3>Post History</h3>
+        <p>Track all your published content with status, links, and error reporting in one dashboard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128187;</div>
+        <h3>Local & Secure</h3>
+        <p>Your data stays on your computer. No cloud servers, no data harvesting, fully private.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="platforms">
+    <h2>Supported Platforms</h2>
+    <p>Connect your accounts and start distributing content today.</p>
+    <div class="platform-list">
+      <div class="platform-item">TikTok</div>
+      <div class="platform-item">YouTube Shorts</div>
+      <div class="platform-item">Instagram Reels</div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <h3>Connect Your Accounts</h3>
+        <p>Link your TikTok, YouTube, and Instagram accounts securely via OAuth.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <h3>Upload Your Content</h3>
+        <p>Drag and drop your video or image into Soundvibe. We support MP4, MOV, JPG, PNG, and more.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <h3>Generate Captions with AI</h3>
+        <p>Our AI analyzes your content and suggests multiple caption options with relevant hashtags.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-text">
+        <h3>Schedule or Publish</h3>
+        <p>Post immediately or schedule for the perfect time. Soundvibe handles the rest.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>Ready to streamline your content?</h2>
+    <p>Download Soundvibe and start distributing your music content across all platforms.</p>
+    <a href="mailto:soundvibellc@gmail.com" class="cta-btn">Contact Us</a>
+  </section>
+
+  <footer>
+    <div>
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:soundvibellc@gmail.com">Contact</a>
+    </div>
+    <div class="copyright">&copy; 2026 Soundvibe. All rights reserved.</div>
+  </footer>
+
 </body>
 </html>

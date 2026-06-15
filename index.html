@@ -69,6 +69,18 @@
     footer a:hover { text-decoration: underline; }
     footer .copyright { margin-top: 12px; }
 
+    .login { max-width: 600px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+    .login h2 { font-size: 1.8rem; margin-bottom: 12px; color: #1a1a2e; }
+    .login p { color: #555; margin-bottom: 24px; }
+    .login-note { font-size: 0.8rem; color: #888; margin-top: 16px; }
+    .tiktok-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #000; color: #fff; border: none; padding: 14px 36px;
+      border-radius: 8px; font-size: 1.05rem; font-weight: 700; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .tiktok-btn:hover { background: #333; }
+
     @media (max-width: 700px) {
       .hero h1 { font-size: 2rem; }
       .feature-grid { grid-template-columns: 1fr; }
@@ -162,6 +174,16 @@
     </div>
   </section>
 
+  <section class="login" id="login">
+    <h2>Connect Your TikTok Account</h2>
+    <p>Authorize Soundvibe to publish content to your TikTok account via the Content Posting API.</p>
+    <button onclick="loginWithTikTok()" class="tiktok-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.75a8.18 8.18 0 004.76 1.52V6.8a4.83 4.83 0 01-1-.11z"/></svg>
+      Login with TikTok
+    </button>
+    <p class="login-note">You will be redirected to TikTok to authorize access. We only request permission to publish videos on your behalf.</p>
+  </section>
+
   <section class="cta">
     <h2>Ready to streamline your content?</h2>
     <p>Download Soundvibe and start distributing your music content across all platforms.</p>
@@ -177,5 +199,16 @@
     <div class="copyright">&copy; 2026 Soundvibe. All rights reserved.</div>
   </footer>
 
+  <script>
+    function loginWithTikTok() {
+      var clientKey = 'awnh4dra2g9qm711';
+      var redirectUri = encodeURIComponent('https://soundvibellc.github.io/soundvibe/app/');
+      var scope = 'user.info.profile,user.info.stats,video.list,video.publish';
+      var state = 'soundvibe_' + Math.random().toString(36).slice(2);
+      var url = 'https://www.tiktok.com/v2/auth/authorize/?client_key=' + clientKey
+        + '&scope=' + scope + '&response_type=code&redirect_uri=' + redirectUri + '&state=' + state;
+      window.location.href = url;
+    }
+  </script>
 </body>
 </html>

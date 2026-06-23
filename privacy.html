@@ -12,6 +12,10 @@
     .header { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
     .header img { width: 48px; height: 48px; border-radius: 10px; }
     .header h1 { margin: 0; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+    th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: #f5f7ff; }
+    code { background: #f0f0f5; padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
   </style>
 </head>
 <body>
@@ -19,15 +23,35 @@
     <img src="favicon.svg" alt="Soundvibe icon">
     <h1>Soundvibe - Privacy Policy</h1>
   </div>
-  <p><strong>Last Updated: May 26, 2026</strong></p>
+  <p><strong>Last Updated: June 23, 2026</strong></p>
 
   <h2>1. Overview</h2>
-  <p>Soundvibe ("the App") is a desktop application that runs locally on your computer. We are committed to protecting your privacy. This policy explains what data the App accesses and how it is handled.</p>
+  <p>Soundvibe ("the App," "we," "us") is a desktop application that runs locally on your computer and helps you manage, schedule, and publish your own social media content to platforms including TikTok, YouTube, and Instagram. We are committed to protecting your privacy. This policy explains what data the App accesses, how it is used, where it is stored, and how you can delete it or revoke access.</p>
 
-  <h2>2. Data Storage</h2>
-  <p>All data is stored locally on your device. Soundvibe does not operate cloud servers and does not transmit your personal data to any server owned or operated by Soundvibe. Your media files, post history, captions, and scheduling data remain on your computer in a local database.</p>
+  <h2>2. Where Your Data Lives</h2>
+  <p>Soundvibe is a local-first application. We do <strong>not</strong> operate cloud servers, and we do not collect, transmit, or store your personal data on any server owned or operated by Soundvibe. Your media files, post history, captions, scheduling data, and all platform access tokens are stored only in a local database and configuration files on your own computer.</p>
 
-  <h2>3. Information We Collect</h2>
+  <h2>3. TikTok Integration</h2>
+  <p>When you choose to connect your TikTok account, Soundvibe uses TikTok's official Login Kit and Content Posting API. This integration is entirely optional and is only activated if you explicitly connect TikTok from the Settings page.</p>
+
+  <p><strong>Permission scopes we request:</strong></p>
+  <table>
+    <tr><th>Scope</th><th>Why we request it</th></tr>
+    <tr><td><code>user.info.basic</code></td><td>To display your TikTok account so you can confirm you are publishing to the correct profile (we receive your TikTok open ID, display name, and avatar).</td></tr>
+    <tr><td><code>video.upload</code> / <code>video.publish</code></td><td>To upload and post the videos <em>you</em> create and select within Soundvibe to your own TikTok account.</td></tr>
+  </table>
+
+  <p><strong>TikTok data we access, and how we handle it:</strong></p>
+  <ul>
+    <li><strong>Basic profile information</strong> (open ID, display name, avatar) — used only to show you which account is connected. Stored locally on your device.</li>
+    <li><strong>OAuth access &amp; refresh tokens</strong> — stored locally and used solely to publish content on your behalf when you request it.</li>
+    <li><strong>The videos and captions you choose to publish</strong> — sent directly from your device to TikTok's API at the moment you publish.</li>
+  </ul>
+  <p>We do <strong>not</strong> read, collect, or store your TikTok followers, your videos already on TikTok, your private messages, your analytics, or any other TikTok user's data. We never sell or share TikTok data with any third party. Soundvibe's use of information received from TikTok APIs adheres to the <a href="https://developers.tiktok.com/terms">TikTok Developer Terms of Service</a>, and our use and transfer of that information complies with TikTok's requirements.</p>
+
+  <p><strong>How to revoke TikTok access:</strong> You can disconnect TikTok at any time from the Settings page inside Soundvibe, which deletes the stored tokens from your device. You may also revoke Soundvibe's access directly in your TikTok account at <em>Settings and privacy → Security and permissions → Manage app permissions</em>.</p>
+
+  <h2>4. Other Information We Access</h2>
   <p>Soundvibe accesses the following information solely to provide its core functionality:</p>
   <ul>
     <li><strong>Social media account tokens:</strong> When you connect a platform (TikTok, YouTube, Instagram), the App stores OAuth access tokens locally to publish content on your behalf.</li>
@@ -35,30 +59,31 @@
     <li><strong>Post metadata:</strong> Captions, hashtags, scheduling times, and publish status are stored in a local database.</li>
   </ul>
 
-  <h2>4. Third-Party Services</h2>
-  <p>Soundvibe communicates with the following third-party services:</p>
+  <h2>5. Third-Party Services</h2>
+  <p>Soundvibe communicates with the following third-party services only when you use the related feature:</p>
   <ul>
     <li><strong>TikTok API:</strong> To authenticate your account and publish videos. Subject to <a href="https://www.tiktok.com/legal/terms-of-service">TikTok's Terms of Service</a> and <a href="https://www.tiktok.com/legal/privacy-policy">Privacy Policy</a>.</li>
     <li><strong>YouTube API:</strong> To authenticate your channel and upload videos. Subject to <a href="https://www.youtube.com/t/terms">YouTube's Terms of Service</a> and <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</li>
+    <li><strong>Instagram API:</strong> To authenticate your account and publish content. Subject to <a href="https://privacycenter.instagram.com/policy">Instagram's Privacy Policy</a>.</li>
     <li><strong>Anthropic API:</strong> To generate AI-powered captions and hashtags. Media frames may be sent to Anthropic's API for analysis. Subject to <a href="https://www.anthropic.com/policies">Anthropic's policies</a>.</li>
   </ul>
 
-  <h2>5. Data Sharing</h2>
-  <p>Soundvibe does not sell, rent, or share your personal information with any third parties. Data is only sent to the social media platforms you explicitly choose to publish to and to the AI service for caption generation.</p>
+  <h2>6. Data Sharing</h2>
+  <p>Soundvibe does not sell, rent, or share your personal information with any third parties. Data is only sent to the social media platforms you explicitly choose to publish to and to the AI service for caption generation, in each case at your direction.</p>
 
-  <h2>6. Data Security</h2>
-  <p>API keys and authentication tokens are stored in encrypted local configuration files on your device. Soundvibe uses OAuth 2.0 for platform authentication, meaning your social media passwords are never stored by the App.</p>
+  <h2>7. Data Security</h2>
+  <p>API keys and authentication tokens are stored in local configuration files on your device. Soundvibe uses OAuth 2.0 for platform authentication, meaning your social media passwords are never seen or stored by the App.</p>
 
-  <h2>7. Data Deletion</h2>
-  <p>Since all data is stored locally, you can delete it at any time by removing the App's data directory or uninstalling the application. You can also disconnect any social media platform from the Settings page, which removes stored tokens.</p>
+  <h2>8. Data Retention &amp; Deletion</h2>
+  <p>Because all data is stored locally, you control it entirely. You can delete it at any time by disconnecting a platform in Settings (which removes that platform's stored tokens), deleting media from within the App, removing the App's data directory, or uninstalling Soundvibe. We retain no copy of your data because we never receive one.</p>
 
-  <h2>8. Children's Privacy</h2>
+  <h2>9. Children's Privacy</h2>
   <p>Soundvibe is not intended for use by individuals under the age of 13. We do not knowingly collect information from children.</p>
 
-  <h2>9. Changes to This Policy</h2>
+  <h2>10. Changes to This Policy</h2>
   <p>We may update this Privacy Policy from time to time. Changes will be reflected by updating the date at the top of this page.</p>
 
-  <h2>10. Contact</h2>
+  <h2>11. Contact</h2>
   <p>For questions about this Privacy Policy, please contact us at <a href="mailto:soundvibellc@gmail.com">soundvibellc@gmail.com</a>.</p>
 </body>
 </html>

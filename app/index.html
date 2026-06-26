@@ -21,34 +21,58 @@
 <body>
   <div class="card" id="card">
     <div class="icon" id="icon">&#9203;</div>
-    <h1 id="title">Processing authorization...</h1>
-    <p id="message">Please wait while we complete your TikTok login.</p>
+    <h1 id="title">Completing authorization...</h1>
+    <p id="message">Handing your TikTok login back to the Soundvibe app. You can close this tab once the app confirms.</p>
   </div>
 
   <script>
+    // Local callback the Soundvibe desktop app listens on (TikTok OAuth).
+    var APP_CALLBACK = 'http://localhost:8977/callback';
+
     var params = new URLSearchParams(window.location.search);
     var code = params.get('code');
+    var state = params.get('state');
     var error = params.get('error');
+    var errorDescription = params.get('error_description');
+
     var icon = document.getElementById('icon');
     var title = document.getElementById('title');
     var message = document.getElementById('message');
     var card = document.getElementById('card');
 
+    function buildAppUrl() {
+      var qs = [];
+      if (code) qs.push('code=' + encodeURIComponent(code));
+      if (state) qs.push('state=' + encodeURIComponent(state));
+      if (error) qs.push('error=' + encodeURIComponent(error));
+      if (errorDescription) qs.push('error_description=' + encodeURIComponent(errorDescription));
+      return APP_CALLBACK + '?' + qs.join('&');
+    }
+
     if (code) {
-      icon.textContent = '✅';
-      title.textContent = 'TikTok Connected!';
-      message.innerHTML = 'Your TikTok account has been authorized successfully. You can now use Soundvibe to publish content to TikTok.<br><br>Open the Soundvibe desktop app to start posting.';
-      card.innerHTML += '<br><a href="../" class="home-link">Back to Soundvibe</a>';
+      // Forward the authorization code to the desktop app's local server.
+      var appUrl = buildAppUrl();
+      // Fire the handoff (top-level navigation to localhost is allowed).
+      window.location.href = appUrl;
+
+      // Show confirmation in case the app isn't running / handoff is blocked.
+      setTimeout(function () {
+        icon.textContent = '✅';
+        title.textContent = 'TikTok Connected!';
+        message.innerHTML = 'Your authorization is complete. Return to the <strong>Soundvibe desktop app</strong> — it should now show your TikTok account as connected.<br><br>If nothing happened, make sure Soundvibe is open and click the button below.';
+        card.innerHTML += '<a class="home-link" href="' + appUrl + '">Return to Soundvibe</a>';
+      }, 1200);
     } else if (error) {
+      // Forward the error too, so the app stops waiting.
+      window.location.href = buildAppUrl();
       icon.textContent = '❌';
       title.textContent = 'Authorization Failed';
       title.className = 'error';
-      message.innerHTML = 'TikTok authorization was denied or encountered an error.<br>Error: ' + (params.get('error_description') || error) + '<br><br>Please try again.';
-      card.innerHTML += '<br><a href="../#login" class="home-link">Try Again</a>';
+      message.innerHTML = 'TikTok authorization was denied or encountered an error.<br>Error: ' + (errorDescription || error) + '<br><br>Please try again from the Soundvibe app.';
     } else {
       icon.textContent = '🚀';
       title.textContent = 'Soundvibe';
-      message.innerHTML = 'Welcome to Soundvibe! <a href="../#login">Connect your TikTok account</a> to get started, or <a href="../">visit the homepage</a> to learn more.';
+      message.innerHTML = 'Welcome to Soundvibe! Open the desktop app and click <strong>Connect TikTok</strong> to get started, or <a href="../">visit the homepage</a> to learn more.';
     }
   </script>
 </body>
